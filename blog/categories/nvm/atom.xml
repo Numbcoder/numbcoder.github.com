@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: nvm | Numbcoder]]></title>
+  <link href="http://seekr.im/blog/categories/nvm/atom.xml" rel="self"/>
+  <link href="http://seekr.im/"/>
+  <updated>2013-07-05T23:45:49+08:00</updated>
+  <id>http://seekr.im/</id>
+  <author>
+    <name><![CDATA[Johnny Wong]]></name>
+    <email><![CDATA[wzhao23@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Node Version Manager -- NVM]]></title>
+    <link href="http://seekr.im/blog/2012/11/09/use-nvm-manage-nodejs-version/"/>
+    <updated>2012-11-09T00:00:00+08:00</updated>
+    <id>http://seekr.im/blog/2012/11/09/use-nvm-manage-nodejs-version</id>
+    <content type="html"><![CDATA[<p>自 <a href="http://nodejs.org/">Node.js</a> 诞生以来，社区一直是相当的火爆，版本更新也是大步向前(这也更 V8 的更新频率有关)，更新活跃是好事。
+但是对于开发者来说，却有个头疼的事，就是面对 Node 的版本频繁更新，自己的代码也要跟上节奏，不停的去适应新的 API，甚至是要兼容不同的 Node 版本，所以开发和测试都很麻烦。</p>
+
+<p>之前用 <a href="https://rvm.io/">RVM</a> 来管理多个 Ruby 的版本，感觉很方便。然后我就想 Node 有木有这样一个东西呢，去 Github 一搜，果然有 <code>NVM</code> : <a href="https://github.com/creationix/nvm">https://github.com/creationix/nvm</a></p>
+
+<!-- more -->
+
+
+<h3>安装</h3>
+
+<p>用 git 将其 <code>clone</code> 到本地 Home 目录下</p>
+
+<p><code>bash
+git clone git://github.com/creationix/nvm.git ~/nvm
+</code></p>
+
+<p>为了将其默认隐藏，所以我 <code>clone</code> 到了 <code>~/.nvm</code> 下</p>
+
+<pre><code>git clone git://github.com/creationix/nvm.git ~/.nvm
+</code></pre>
+
+<p>将<code>nvm</code> 加入到 shell 环境，在你的 <code>~/.bashrc</code>, <code>~/.zshrc</code> or <code>~/.profile</code> 中加入</p>
+
+<pre><code> . ~/nvm/nvm.sh
+</code></pre>
+
+<p>或者</p>
+
+<pre><code># add nvm  
+if [[ -s "$HOME/.nvm/nvm.sh" ]]  ; then   
+  source "$HOME/.nvm/nvm.sh" ;  
+fi
+</code></pre>
+
+<p>重启终端，就可以用 <code>nvm</code> 命令了</p>
+
+<h3>用法</h3>
+
+<p>查看 <code>Node.js</code> 所有可安装的版本</p>
+
+<pre><code>nvm ls-remote
+</code></pre>
+
+<p>安装 <code>0.8.8</code> 版本</p>
+
+<pre><code>nvm install 0.8.8
+</code></pre>
+
+<p>执行命令后，系统会自动下载 <code>node 0.8.8</code> 的源码，并编译安装。安装成功后，会自动设置为系统默认</p>
+
+<p>查看所有已安装的版本</p>
+
+<pre><code>nvm ls
+</code></pre>
+
+<p>卸载 <code>0.8.8</code></p>
+
+<pre><code>nvm uninstall 0.8.8
+</code></pre>
+
+<p>要临时使用某个版本(必须先安装了)</p>
+
+<pre><code>nvm use 0.9.3
+</code></pre>
+
+<p>在 <code>0.6.18</code> 环境上执行 <code>app.js</code></p>
+
+<pre><code>nvm run 0.6.18 app.js
+</code></pre>
+
+<p>将 <code>0.6.18</code> 设置为系统默认 <code>node</code> 环境</p>
+
+<pre><code>nvm alias default 0.6.18
+</code></pre>
+
+<p><code>NVM</code> 命令自动补全(目前貌似只支持 <code>bash</code>)</p>
+
+<p>在你的 <code>~/.bashrc</code> 中加入</p>
+
+<pre><code>[[ -r $NVM_DIR/bash_completion ]] &amp;&amp; . $NVM_DIR/bash_completion
+</code></pre>
+
+<p>更多用法，查看帮助</p>
+
+<pre><code>nvm help
+</code></pre>
+
+<h3>注意</h3>
+
+<p>一些工具可能会调用系统 <code>node</code>, 如编辑器要调用 <code>jshint</code> 等。它们可能默认调用 <code>/usr/bin/node</code>, 所以你可能需要将你的 <code>node</code> 环境 链接过去。</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Numbcoder</title>
+  <title>Node Version Manager -- NVM - Numbcoder</title>
   <meta name="author" content="Johnny Wong">
 
   
@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://seekr.im">
+  <link rel="canonical" href="http://seekr.im/blog/2012/11/09/use-nvm-manage-nodejs-version">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Numbcoder" type="application/atom+xml">
@@ -77,15 +77,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/11/09/use-nvm-manage-nodejs-version/">Node Version Manager &#8211; NVM</a></h1>
+      <h1 class="entry-title">Node Version Manager -- NVM</h1>
     
     
       <p class="meta">
@@ -108,81 +105,108 @@
   </header>
 
 
-  <div class="entry-content"><p>自 <a href="http://nodejs.org/">Node.js</a> 诞生以来，社区一直是相当的火爆，版本更新也是大步向前(这也更 V8 的更新频率有关)，更新活跃是好事。
+<div class="entry-content"><p>自 <a href="http://nodejs.org/">Node.js</a> 诞生以来，社区一直是相当的火爆，版本更新也是大步向前(这也更 V8 的更新频率有关)，更新活跃是好事。
 但是对于开发者来说，却有个头疼的事，就是面对 Node 的版本频繁更新，自己的代码也要跟上节奏，不停的去适应新的 API，甚至是要兼容不同的 Node 版本，所以开发和测试都很麻烦。</p>
 
 <p>之前用 <a href="https://rvm.io/">RVM</a> 来管理多个 Ruby 的版本，感觉很方便。然后我就想 Node 有木有这样一个东西呢，去 Github 一搜，果然有 <code>NVM</code> : <a href="https://github.com/creationix/nvm">https://github.com/creationix/nvm</a></p>
 
+<!-- more -->
+
+
+<h3>安装</h3>
+
+<p>用 git 将其 <code>clone</code> 到本地 Home 目录下</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git://github.com/creationix/nvm.git ~/nvm
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>为了将其默认隐藏，所以我 <code>clone</code> 到了 <code>~/.nvm</code> 下</p>
+
+<pre><code>git clone git://github.com/creationix/nvm.git ~/.nvm
+</code></pre>
+
+<p>将<code>nvm</code> 加入到 shell 环境，在你的 <code>~/.bashrc</code>, <code>~/.zshrc</code> or <code>~/.profile</code> 中加入</p>
+
+<pre><code> . ~/nvm/nvm.sh
+</code></pre>
+
+<p>或者</p>
+
+<pre><code># add nvm  
+if [[ -s "$HOME/.nvm/nvm.sh" ]]  ; then   
+  source "$HOME/.nvm/nvm.sh" ;  
+fi
+</code></pre>
+
+<p>重启终端，就可以用 <code>nvm</code> 命令了</p>
+
+<h3>用法</h3>
+
+<p>查看 <code>Node.js</code> 所有可安装的版本</p>
+
+<pre><code>nvm ls-remote
+</code></pre>
+
+<p>安装 <code>0.8.8</code> 版本</p>
+
+<pre><code>nvm install 0.8.8
+</code></pre>
+
+<p>执行命令后，系统会自动下载 <code>node 0.8.8</code> 的源码，并编译安装。安装成功后，会自动设置为系统默认</p>
+
+<p>查看所有已安装的版本</p>
+
+<pre><code>nvm ls
+</code></pre>
+
+<p>卸载 <code>0.8.8</code></p>
+
+<pre><code>nvm uninstall 0.8.8
+</code></pre>
+
+<p>要临时使用某个版本(必须先安装了)</p>
+
+<pre><code>nvm use 0.9.3
+</code></pre>
+
+<p>在 <code>0.6.18</code> 环境上执行 <code>app.js</code></p>
+
+<pre><code>nvm run 0.6.18 app.js
+</code></pre>
+
+<p>将 <code>0.6.18</code> 设置为系统默认 <code>node</code> 环境</p>
+
+<pre><code>nvm alias default 0.6.18
+</code></pre>
+
+<p><code>NVM</code> 命令自动补全(目前貌似只支持 <code>bash</code>)</p>
+
+<p>在你的 <code>~/.bashrc</code> 中加入</p>
+
+<pre><code>[[ -r $NVM_DIR/bash_completion ]] &amp;&amp; . $NVM_DIR/bash_completion
+</code></pre>
+
+<p>更多用法，查看帮助</p>
+
+<pre><code>nvm help
+</code></pre>
+
+<h3>注意</h3>
+
+<p>一些工具可能会调用系统 <code>node</code>, 如编辑器要调用 <code>jshint</code> 等。它们可能默认调用 <code>/usr/bin/node</code>, 所以你可能需要将你的 <code>node</code> 环境 链接过去。</p>
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/11/09/use-nvm-manage-nodejs-version/">Read on &rarr;</a>
-    </footer>
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/09/20/why-i-use-vim/">为什么我会选择 Vim</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Johnny Wong</span></span>
 
-<time datetime="2012-09-20T00:00:00+08:00" pubdate data-updated="true">Sep 20<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong> 段子：</strong></p>
-
-<blockquote><p>一群男程序员酒后乱逛，正要集体侵犯一个女子。女子见势不妙，问：你们说说哪个代码编辑器最好？程序员们就地争论了三天三夜不欢而散，女子趁机顺利脱身。。</p></blockquote>
-
-<p>编辑器之争和语言之争一直是程序员圈里讨论的最多的话题。最近也出现了很多不错的编辑器，而我自工作以来一直就用 Vim，Vim 非常古老，诞生于80年代末，估计和我的年龄差不多。近几年，出现了很多优秀漂亮的编辑器，如 Mac 平台的 <a href="http://macromates.com/">TextMate</a> ，还有近期比较火的覆盖3个平台的 <a href="http://www.sublimetext.com/">Sublime Text</a>。这两个编辑器功能都是相当强大的，其中 TextMate 的 Bundle 已经成为其他编辑器的插件接口的标准。</p>
-
-<p>我曾经好多次试图转到 TextMate 和 Sublime Text，因为他们的 UI 做的真的很漂亮，而且社区很活跃，各种 Bundle Plugin 层出不穷。可是几次都失败了，都找不到 Vim 上那种随心所欲的感觉。</p>
-
-<p>下面从功能点上来对比一下（下面指的是有 GUI 的vim，包括 GVim 和 MacVim）：</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/09/20/why-i-use-vim/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/08/go-on-bloging/">Go on Bloging</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -194,38 +218,45 @@
   
 
 
-<time datetime="2012-08-08T00:00:00+08:00" pubdate data-updated="true">Aug 8<span>th</span>, 2012</time>
-        
-      </p>
+<time datetime="2012-11-09T00:00:00+08:00" pubdate data-updated="true">Nov 9<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/nodejs/'>nodejs</a>, <a class='category' href='/blog/categories/nvm/'>nvm</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://seekr.im/blog/2012/11/09/use-nvm-manage-nodejs-version/" data-via="numbcoder" data-counturl="http://seekr.im/blog/2012/11/09/use-nvm-manage-nodejs-version/" >Tweet</a>
+  
+  
+  
+</div>
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/09/20/why-i-use-vim/" title="Previous Post: 为什么我会选择 Vim">&laquo; 为什么我会选择 Vim</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-  <div class="entry-content"><p>写这篇博文的时候，我不禁狠狠的鄙视自己，貌似这两年来折腾过的博客就有好几个了，却没写几篇什么像样的文章，以前写了一些，也懒得找回了，真是折腾狂啊。回顾一下我的折腾经历。</p>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
-<h2>第三方博客平台</h2>
-
-<h3>JavaEye</h3>
-
-<p>那时候还是在学校，应该是大二的时候，自己刚刚开始爱上写代码，偶尔就会去上些技术网站，什么 CSDN，JavaEye 之类的，看一些新闻或是别人写的技术文章，然后自己也开始琢磨在写一些小心得，技术笔记之类。当时是落户在 JavaEye，我比较它的代码高亮，还有行号。我记得当时写的比较多的是，一些数据结构的实现，什么冒泡排序，二叉树之类的。</p>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/08/08/go-on-bloging/">Read on &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -233,7 +264,7 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2012/11/09/use-nvm-manage-nodejs-version/">Node Version Manager &#8211; NVM</a>
+        <a href="/blog/2012/11/09/use-nvm-manage-nodejs-version/">Node Version Manager -- NVM</a>
       </li>
     
       <li class="post">
@@ -250,7 +281,7 @@
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/numbcoder">@numbcoder</a> on GitHub
@@ -283,6 +314,7 @@
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -297,7 +329,10 @@
       var disqus_shortname = 'seekr';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://seekr.im/blog/2012/11/09/use-nvm-manage-nodejs-version/';
+        var disqus_url = 'http://seekr.im/blog/2012/11/09/use-nvm-manage-nodejs-version/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Tools | Numbcoder]]></title>
+  <link href="http://seekr.im/blog/categories/tools/atom.xml" rel="self"/>
+  <link href="http://seekr.im/"/>
+  <updated>2013-07-05T23:45:49+08:00</updated>
+  <id>http://seekr.im/</id>
+  <author>
+    <name><![CDATA[Johnny Wong]]></name>
+    <email><![CDATA[wzhao23@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[为什么我会选择 Vim]]></title>
+    <link href="http://seekr.im/blog/2012/09/20/why-i-use-vim/"/>
+    <updated>2012-09-20T00:00:00+08:00</updated>
+    <id>http://seekr.im/blog/2012/09/20/why-i-use-vim</id>
+    <content type="html"><![CDATA[<p><strong> 段子：</strong></p>
+
+<blockquote><p>一群男程序员酒后乱逛，正要集体侵犯一个女子。女子见势不妙，问：你们说说哪个代码编辑器最好？程序员们就地争论了三天三夜不欢而散，女子趁机顺利脱身。。</p></blockquote>
+
+<p>编辑器之争和语言之争一直是程序员圈里讨论的最多的话题。最近也出现了很多不错的编辑器，而我自工作以来一直就用 Vim，Vim 非常古老，诞生于80年代末，估计和我的年龄差不多。近几年，出现了很多优秀漂亮的编辑器，如 Mac 平台的 <a href="http://macromates.com/">TextMate</a> ，还有近期比较火的覆盖3个平台的 <a href="http://www.sublimetext.com/">Sublime Text</a>。这两个编辑器功能都是相当强大的，其中 TextMate 的 Bundle 已经成为其他编辑器的插件接口的标准。</p>
+
+<p>我曾经好多次试图转到 TextMate 和 Sublime Text，因为他们的 UI 做的真的很漂亮，而且社区很活跃，各种 Bundle Plugin 层出不穷。可是几次都失败了，都找不到 Vim 上那种随心所欲的感觉。</p>
+
+<p>下面从功能点上来对比一下（下面指的是有 GUI 的vim，包括 GVim 和 MacVim）：</p>
+
+<!-- more -->
+
+
+<h3>快捷键</h3>
+
+<p>这个真不用说，Vim 完胜所有编辑器，包括 Emacs。那种完全脱离鼠标的操作，非常高效。</p>
+
+<h3>文件导航</h3>
+
+<p>vim 本身是没有文件导航的。社区也有很多人也曾提出要加入 File Explore 原生支持，这个我曾经也很期待，甚至在 MacVim 的分支上有这么一个版本，带文件导航的，界面类似于 TextMate 1。</p>
+
+<p>插件：<a href="https://github.com/scrooloose/nerdtree">NerdTree</a></p>
+
+<p>NerdTree 看起来很丑，事实上它比原生的那种 Side Bar 要好用很多，比如在 Textmate 中，想要打开一个文件，还要用鼠标去一层一层的点开，而在 NerdTree 中，这些完全可以用快捷键实现，横竖分屏打开，新标签打开，都很容易，文件目录间的跳转也很方便。
+配合 <a href="https://github.com/jistr/vim-nerdtree-tabs">vim-nerdtree-tabs</a>，可以打开新标签时，也能自动打开 NerdTree。</p>
+
+<h3>文件快速查找</h3>
+
+<p>这是我曾经最羡慕 TextMate 的一个功能，可以快速打开某个文件。当时有个叫 <a href="https://github.com/wincent/Command-T">Command-T</a> 的插件，就是用来快速文件查找的，大家用的都很兴奋，可是这玩意依赖 Ruby，安装也比较蛮烦。</p>
+
+<p>插件：<a href="https://github.com/kien/ctrlp.vim">Ctrlp</a></p>
+
+<p>Ctrlp 的出现更加坚定了我继续用 Vim 的信心。这个插件相当强大，绝对是神器啊，直接秒杀 TextMate 和 Sublime Text 的文件查找。Ctrlp 除了可以查找当前目录或者用户目录下（可以自己配置）的所有文件，还可以快速查找 Buffer，MRU (Most Recently Used Files)，支持正则匹配，配合 ctags 还能快速定位函数位置。</p>
+
+<p>如果说 Vim 只能选择一个插件，我肯定选择 Ctrlp。</p>
+
+<h3>代码补全</h3>
+
+<p>对于补全，必须要说的是，肯定不能和 IDE 比静态语言的补全，比如和 Eclipse 比 Java 的补全。这个没有意义，这里比较的是动态语言，我用的也基本上都是动态语言，Ruby，Javascript。</p>
+
+<p>插件：<a href="https://github.com/Shougo/neocomplcache">Neocomplcache</a></p>
+
+<p>Neocomplcache 绝对是 Vim 补全插件里最好的，没有之一。是一个日本人 <a href="https://github.com/Shougo">Shougo</a> 写的，配合 <a href="https://github.com/Shougo/Shougo/neosnippet">Shougo/neosnippet</a> 还能进行 snippets 补全，而且可以自定义 snippets。</p>
+
+<p>不得不提的是 <a href="https://github.com/Shougo">Shougo</a> 是一个非常敬业的程序员，写过很多不错的 Vim 插件，可以去他的 Github 上找。Neocomplcache 也是我见过的 Vim 插件里更新最频繁的一个。</p>
+
+<h3>查找与替换</h3>
+
+<p>Vim 只能在 Buffer 中进行单词查找和替换，但是我们经常需要进行目录下的全局查找，这时候就感觉有点不爽了。不过不要忘了 Vim 是诞生在 Unix/Linux，所以没有解决不了的问题。</p>
+
+<p>插件：<a href="https://github.com/mileszs/ack.vim">Ack.vim</a></p>
+
+<p><a href="https://github.com/petdance/ack">Ack</a> 本身是一个 Perl 的lib，Ack 存在的意义是 <code>A replacement for grep for programmers</code>，它还有个很霸气的网站 <a href="http://betterthangrep.com/">http://betterthangrep.com/</a>。素闻 Perl 的正则表达式独步天下，所以诞生出 Ack 这么个强大的东西就不足为奇了。所以在 Ack 面前，<code>grep</code> 真是弱爆了。</p>
+
+<p>在安装 Vim Ack 插件前，要先安装 Ack，具体安装方法也很简单，然后在 Vim 中就可以调用强大的 Ack 了。最重要的是，Ack 搜集结果显示方式也很方便，可以快速的知道目标在哪个文件那一行，而且可以很方便的打开文件定位目标。</p>
+
+<h3>语法检查</h3>
+
+<p>语法检查这个对于写动态语言来说，不是很重要，一般也不太好检查。因为我目前写的最多的是 Javascript，所以我用 <a href="http://www.jshint.com/docs/">jshint</a>，来做一些代码规范性检查，以便于团队代码风格同意。</p>
+
+<p>插件：<a href="https://github.com/scrooloose/syntastic">Syntastic</a></p>
+
+<p>Syntastic 支持多种语言的代码语法格式检查，不过要配合第三方的 Syntax Checker 而已。我就是用 jshint 作为 checker 来检查 Js 代码的。</p>
+
+<h3>跳转神器</h3>
+
+<p>插件：<a href="https://github.com/Lokaltog/vim-easymotion">EasyMotion</a></p>
+
+<p>EasyMotion 是一个可以让你的键盘操作效率再次提升一个 Level 的神器，如果再能建配上一把 <a href="http://zh.wikipedia.org/wiki/Happy_Hacking_Keyboard">HHKB</a>，你会有一种双手掌控整个世界的感觉。</p>
+
+<h3>插件包管理</h3>
+
+<p>以前 Vim 安装插件非常麻烦。安装一个插件，需要将不同的文件复制到指定的文件夹，有时候还会出现重名的情况，或者是安装了不起作用等。插件升级也
+是一个非常麻烦的过程。所以很多新手，在这一步就给难住了。</p>
+
+<p>插件：<a href="https://github.com/gmarik/vundle">Vundle</a></p>
+
+<p>Vundle 其实就是 Vim Bundle 。有了 Vundle 以后，安装，更新、卸载插件都是 So Easy 的事了。</p>
+
+<h3>Others</h3>
+
+<p>Vim 各种插件实在太多了，关键是要选择适合自己的。</p>
+
+<p>我常用的：</p>
+
+<ul>
+<li>注释：<a href="https://github.com/scrooloose/nerdcommenter">Nerdcommenter</a></li>
+<li>Git：<a href="https://github.com/tpope/vim-fugitive">Fugitive</a></li>
+<li>括号补全：<a href="https://github.com/kana/vim-smartinput">Smartinput</a></li>
+<li>状态栏增强：<a href="https://github.com/Lokaltog/vim-powerline">Powerline</a></li>
+</ul>
+
+
+<p>具体的配置可以参考我的 <a href="https://github.com/numbcoder/dotfiles/blob/master/.vimrc">.vimrc</a></p>
+
+<h3>结尾</h3>
+
+<p>用 Vim 两三年了，中途也折腾过很长时间的 Emacs，越来越感觉 Vim，Emacs 这种编辑器的强大。因为他们提供的不仅仅是一个编辑器程序，而是一门语言的 Ecosystem，在这个环境下，
+你可以实现你的想法，想要什么功能，自己写一个就 OK 了。。</p>
+
+<p><strong> So, Love your Keyboard, Enjoy Coding! </strong></p>
+]]></content>
+  </entry>
+  
+</feed>
